@@ -60,15 +60,15 @@ private:
 // constructor for filling the vector using a file
   Vector (string file) {
     ifstream infile;
-    infile.open(file);// opens input file
+    infile.open(file);    // opens input file
     int value;
     while (infile >> value)  {  //reads until file is done  
-        if (!front) {
+        if (!front) { //if front is empty push to front
             pushFront(value);
         }
-       pushRear(value);          // adds value read from file to the list
+       pushRear(value);          // adds everything else
     }
-    infile.close(); //closes file
+    infile.close(); //close file
   }
 
   Vector (int arr[], int size) { //constructor for vector array
@@ -147,7 +147,7 @@ private:
     } else if (trav == rear) {     // if location is equal to the rear, push rear
       pushRear (val);   
     } else {
-      for (int i = 0; i < loc; i++)       //  traversing listVect until appropriate index is reached.
+      for (int i = 0; i < loc; i++)       //  traversing the vector until appropriate index is reached.
         {
           previous = trav;
           trav = trav->next;
