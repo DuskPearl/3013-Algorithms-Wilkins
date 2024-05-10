@@ -76,7 +76,7 @@ private:
       for (int j = 0; j < size; j++) {
         Node* newNode = new Node(arr[j]);
     
-            if (!j) {// sets the first index to front & travel
+            if (!j) {// if j is empty, set the first place
                 front = trav = newNode;
             } else {
                 trav->next = newNode;
