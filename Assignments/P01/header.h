@@ -6,8 +6,8 @@ using namespace std;
 class Node {
 public:
     int value;
-    Node *next = nullptr;
-    Node *prev = nullptr;
+    Node *next = nullptr; //points to the next value in the vector
+    Node *prev = nullptr; //points to the previous value in the vector
     Node(int val) : value(val), next(nullptr) {}
 };
 
@@ -53,67 +53,58 @@ private:
   
  public: 
 
-  Vector () { //default constructor
+  Vector () { // default constructor
     front = rear = nullptr;
   }
 
-//fills the vector using a file
+// constructor for filling the vector using a file
   Vector (string file) {
     ifstream infile;
-    infile.open(file);
+    infile.open(file);// opens input file
     int value;
-
-    infile.open(file);       // opens input file
-
-    while (infile >> value)      // reads until eof
-    {
+    while (infile >> value)  {  //reads until file is done  
         if (!front) {
             pushFront(value);
         }
        pushRear(value);          // adds value read from file to the list
     }
-
-    infile.close();  
-
+    infile.close(); //closes file
   }
 
   Vector (int arr[], int size) { //constructor for vector array
-  Node *trav = nullptr;
-  for (int j = 0; j < size; j++){
-    Node* newNode = new Node(arr[j]);
-
-        if (!j) {// sets the first index to front & travel
-            front = trav = newNode;
-        } else {
-            trav->next = newNode;
-            trav = trav->next;
+      Node *trav = nullptr;
+      for (int j = 0; j < size; j++) {
+        Node* newNode = new Node(arr[j]);
+    
+            if (!j) {// sets the first index to front & travel
+                front = trav = newNode;
+            } else {
+                trav->next = newNode;
+                trav = trav->next;
+            }
         }
-    }
-    rear = trav; // sets the rear to the end of the array
-}
+        rear = trav; // sets the rear to the end of the array
+  } 
 
   //push single value to front
   void pushFront (int val) {
-    ///value that will be added to the front of the vector  
-    Node* newNode = new Node(val);   
+    Node* newNode = new Node(val);   //node that adds the value to the front
 
-    if(!front) {
+    if (!front) {
       front = rear = newNode;
-      
     } else {
       newNode->next = front;
       front = newNode;
     }
-
   }
 
-  //push array to front
-  void pushFront (Vector V2) { // pushes
+  //push array to front of vector
+  void pushFront (Vector V2) {
     Node *trav = V2.front;         //traverses V2
     int num = 0;
     int temp;
     
-    while(!trav) {        
+    while (!trav) {        
       temp = trav->value;
        pushAt(num, temp);                  
        trav = trav->next;
@@ -121,10 +112,9 @@ private:
     }
   }
  
-  //pushes to rear 
-  void pushRear (int val){
-    //value that will be added to the rear of the vector  
-    Node* newNode = new Node (val);     
+  //pushes a value to rear of vector
+  void pushRear (int val) {
+    Node* newNode = new Node (val);   //node that adds the value to the front
 
     if (rear == NULL) {
       front = rear = newNode;
@@ -132,6 +122,7 @@ private:
       rear->next = newNode;
       rear = newNode;
   }
+
   //pushes array onto back of vector
   void pushRear (Vector V2) {
     Node *trav; // traverses V2
@@ -146,7 +137,7 @@ private:
     }
   }
   
-  //At a specified location
+  //pushes to a specified location
   void pushAt (int loc,int val) {
     Node* previous = front;                     //  creating traveling nodes.
     Node* trav = front;
@@ -188,19 +179,20 @@ private:
     delete temp; 
     return popped;
   }
-  
+
+//remove for a specific location in the vector
   int popAt (int loc){
-    Node * previous = front;        //  creating traveling nodes.
+    Node * previous = front;       
     Node * trav = front;
     Node * temp = nullptr;
 
-    if(loc == 0) {                 // if location is front, pop front
+    if (loc == 0) {                 // if location is front, pop front
         return popFront();
     } else if (trav == rear) {     // if location is rear, pop rear
-      return popRear();    
+      return popRear();   
+        
     } else {
-      for(int i = 0; i < loc; i++)       //  traversing listVect until appropriate index is reached.
-        {
+      for(int i = 0; i < loc; i++) {       //  traversing listVect until appropriate index is reached.
                 previous = trav;
                 trav = trav->next;
         }
