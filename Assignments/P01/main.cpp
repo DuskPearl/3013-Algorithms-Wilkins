@@ -1,0 +1,73 @@
+#include "header.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main(){
+
+     ofstream outfile;
+       outfile.open("lease.txt");
+
+    Vector head;
+    head.Header(outfile);
+
+    int x = 0;
+
+    Vector v1;
+    v1.pushFront(18);
+    v1.pushFront(20);
+    v1.pushFront(25);
+    v1.pushRear(18);
+    v1.pushRear(20);
+    v1.pushRear(25);
+    v1.print(outfile);
+
+    int A[] = {11, 25, 33, 47, 51};
+    Vector v2(A, 5);
+    v2.print(outfile);
+
+    v2.pushFront(9);
+    v2.pushRear(63);
+    v2.print(outfile);
+
+    outfile << "\nVector v1++\n";
+    v1.pushRear(v2);
+    v1.print(outfile);
+
+    x = v1.popFront();
+    x = v1.popFront();
+    x = v1.popFront();
+    v1.print(outfile);
+    outfile << x << endl;
+
+    x = v1.popRear();
+    x = v1.popRear();
+    x = v1.popRear();
+    v1.print(outfile);
+    outfile << x << endl;
+
+    v2.print(outfile);
+    x = v2.popAt(3);
+    v2.print(outfile);
+    outfile << x << endl;
+
+    x = v2.find(51);
+    outfile << x << endl;
+
+    x = v2.find(99);
+    outfile << x << endl;
+
+    Vector v3(v1);
+    v3.print(outfile);
+
+    v3.pushFront(v2);
+    v3.print(outfile);
+
+    Vector v4("input.dat");
+    v4.pushRear(v3);
+    v4.print(outfile);
+    // [56, 61, 97, 66, 83, 25, 26, 11, 53, 49, 62, 18, 10, 18, 14, 3, 4, 23, 18, 24, 26, 27, 54, 14, 12, 45, 65, 98, 56, 97, 15, 84, 98, 9, 11, 25, 33, 47, 51, 63, 18, 20, 25, 9, 11, 25, 27, 33]
+
+    
+}
