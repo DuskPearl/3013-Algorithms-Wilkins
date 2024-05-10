@@ -127,7 +127,6 @@ private:
   void pushRear (Vector V2) {
     Node *trav; // traverses V2
     trav = V2.front;
-   // Node* newNode = new Node(trav->value);
 
     while (trav) { // while traversing push values to rear
        Node* newNode = new Node(trav->value);
@@ -192,7 +191,7 @@ private:
       return popRear();   
         
     } else {
-      for(int i = 0; i < loc; i++) {       //  traversing listVect until appropriate index is reached.
+      for(int i = 0; i < loc; i++) {       //  traverse the vector
                 previous = trav;
                 trav = trav->next;
         }
