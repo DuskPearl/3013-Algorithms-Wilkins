@@ -138,7 +138,7 @@ private:
   
   //pushes to a specified location
   void pushAt (int loc,int val) {
-    Node* previous = front;                     //  creating traveling nodes.
+    Node* newNode = front;                    //
     Node* trav = front;
 
     if (loc == 0) {                   // if location is equal to the front, push front
@@ -146,13 +146,13 @@ private:
     } else if (trav == rear) {     // if location is equal to the rear, push rear
       pushRear (val);   
     } else {
-      for (int i = 0; i < loc; i++)       //  traversing the vector until appropriate index is reached.
+      for (int i = 0; i < loc; i++)       //  traverse the vector till loc is found
         {
-          previous = trav;
+          newNode = trav;
           trav = trav->next;
         }
     } 
-    previous->next = trav;
+    newNode->next = trav;
     trav->next->prev = trav;
     trav = nullptr;
     delete trav;    
